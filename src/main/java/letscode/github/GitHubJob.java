@@ -13,6 +13,7 @@ public class GitHubJob {
     private final GitHub gitHub;
     private final Gui gui = new Gui();
     private final Set<Long> allPrIds = new HashSet<>();
+    Bot bot = new Bot();
 
     public GitHubJob() {
         try {
@@ -74,7 +75,13 @@ public class GitHubJob {
                                     "New PR in " + pr.getRepository().getFullName(),
                                     pr.getTitle()
                             );
+                            bot.sendMessage(
+                                    "New PR in " + pr.getRepository().getFullName().toString() +
+                                            pr.getTitle().toString()
+                            );
                         });
+
+
                     }
                 } catch (IOException e) {
                     throw new RuntimeException(e);
